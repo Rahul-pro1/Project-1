@@ -1,0 +1,14 @@
+{% extends 'common.html' %}
+{% block content %}
+    <body>
+        {% for i in slot_data %}
+            <h1>{{ i[1] }}</h1>
+            <div class="container">
+                <img src="{{ i[8] }}" alt="Not loaded" srcset="">
+                <div>Car_ID: {{ i[0] }}</div>
+                <div>Available Slot: {{ i[2] }}</div>
+                <a href="/test-drive/{{ i[0] }}/book" class="btn btn-secondary" id="test">Book now!</a>
+            </div>
+        {% endfor %}
+    </body>
+{% endblock content %}
