@@ -23,17 +23,37 @@ api = yaml.load(open('api.yaml'))
 
 mysql = MySQL(app)
 
+#service notification
+def notify():
+    date = datetime.today().strftime('%Y-%m-%d')
+    cursor = mysql.connection.cursor()
+    cursor.execute('select * from bought_cars')
+    data = cursor.fetchall()
+    for i in data:
+        if str(i[2]) == date:
+            notif = Mail(from_email='rahulsiv2108@gmail.com',
+                         to_emails=i[3],
+                         subject='Time to take your car to the service centre',
+                         html_content= "<p>Hi! It's been 6 months since you have had your car checked. Ensure that you take your car to the nearest showroom for better performance! Happy driving!</p>"
+                        )
+            sg_key = api['sendgrid']
+            try:
+                mail = SendGridAPIClient(sg_key)
+                mail.send(notif)
+            except Exception as e:
+                print(e)
+
 #home route
 @app.route('/', methods = ['GET', 'POST'])
 def buyer():
-    date = datetime.now()
+    notify()
     if request.method == 'POST':
         car = request.form
         carType = car['search']
         cursor = mysql.connection.cursor()
         cursor.execute('select car_id, name from buyer where type= % s;', (carType,))
         data = cursor.fetchall()
-        return render_template('buyer.html', data=data, date=date)
+        return render_template('buyer.html', data=data)
     return render_template('buyer.html')
 
 #car route
@@ -138,37 +158,17 @@ def confirm(car_id):
         sg.send(td_update)
     except Exception as e:
         print(e)
-    return redirect('/test-drive/<car_id>')
+    return redirect('/test-drive')
     flash('Booking Confirmed!')
 
 #run the program
 if __name__ == '__main__':
     app.run(debug=True)
+    
 
-#service notification
-def notify():
-    date = datetime.now()
-    cursor = mysql.connection.cursor()
-    cursor.execute('select next_serv from bought_cars where car_id = % s;', (car_id,))
-    date_serv = cursor.fetchone()
-    cursor.execute('select buyer_email from bought_cars where car_id = % s;', (car_id,))
-    email = cursor.fetchone()
-    if date == date_serv[2]:
-        cursor.execute("update bought_cars set last_serv = curdate() and next_serv = next_serv + '00/06/00' where car_id = % s;", (car_id,)) 
-        mysql.connection.commit()
-        notif = Mail(from_email= 'rahulsiv2108@gmail.com',
-                     to_emails=  email,
-                     subject= 'Time to get your car to the service centre!',
-                     html_content= "<p>Hi! It's been 6 months since you have had your car checked. Ensure that you take your car to the nearest showroom for better performance! Happy driving!</p>"
-                    )
-        sg_key = api['sendgrid']
-        try:
-            mail = SendGridAPIClient(sg_key)
-            mail.send(notif)
-        except Exception as e:
-            print(e)
 
-notify()
+
+
 
 
 
