@@ -58,6 +58,7 @@ def notify():
     #             mail.send(notif)
     #         except Exception as e:
     #             print(e)
+    # f.close()
 
 #home route
 @app.route('/', methods = ['GET', 'POST'])
@@ -72,6 +73,14 @@ def buyer():
         return render_template('buyer.html', data=data)
     return render_template('buyer.html')
 
+#more info route
+@app.route('/more')
+def info():
+    file = open('info.txt', 'r')
+    text = file.readlines()
+    file.close()
+    return render_template('info.html', text=text)
+
 #car route
 @app.route('/<car_id>')
 def car(car_id):
@@ -81,31 +90,37 @@ def car(car_id):
     return render_template('car.html', info=info)
 
 #automated e-mail route
-@app.route('/mail')
-def send():
+@app.route('/<car_id>/mail')
+def send(car_id):
+    cursor = mysql.connection.cursor()
+    cursor.execute('select seller_email from buyer where car_id= % s;', (car_id))
+    data = cursor.fetchone()
     msg = Mail(
         from_email='rahulsiv2108@gmail.com',
         to_emails='sidsiv2007@gmail.com',
-        subject='Seller contact infp',
-        html_content='<div>Seller contact info has been sent!</div>')
+        subject='Seller contact info',
+        html_content=f'<div>Seller contact info has been sent!</div><p>{data}</p>')
     sg_key = api['sendgrid']
     try:
         sg = SendGridAPIClient(sg_key)
         res = sg.send(msg)
     except Exception as e:
         print(e)
-    return render_template('mail.html')
+    return redirect(f'/{car_id}')
 
 #test drive route
 @app.route('/test-drive', methods= ['GET', 'POST']) 
 def test_drive():
     cursor = mysql.connection.cursor()
     cur_date = datetime.today().strftime('%Y-%m-%d')
+    cur_date_str = cur_date.replace('-', '')
     cursor.execute('select slot,car_id from testdrive')
     slots = cursor.fetchall()
     for i in slots:
-        if str(i[0]) < cur_date:
+        slot_date = str(i[0]).replace('-', '')
+        if int(slot_date) < int(cur_date_str):
             cursor.execute('''update testdrive set slot = curdate() where car_id = % s;''', (i[1],))
+            mysql.connection.commit()
     if request.method == 'POST':
         form = request.form
         name = form['name']
