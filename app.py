@@ -131,8 +131,8 @@ def test_drive():
         elements = cursor.fetchall()
         return render_template('test_drive.html', elements=elements)
     cursor.execute('select * from testdrive;')
-    data = cursor.fetchall()
-    return render_template('test_drive.html', data=data)
+    elements = cursor.fetchall()
+    return render_template('test_drive.html', elements=elements)
 
 #test drive this car route
 @app.route('/test-drive/<car_id>')
