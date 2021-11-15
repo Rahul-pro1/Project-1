@@ -71,7 +71,10 @@ def buyer():
         cursor.execute('select car_id, name from buyer where type= % s;', (carType,))
         data = cursor.fetchall()
         return render_template('buyer.html', data=data)
-    return render_template('buyer.html')
+    cursor = mysql.connection.cursor()
+    cursor.execute('select car_id, name from buyer;')
+    data = cursor.fetchall()
+    return render_template('buyer.html', data=data)
 
 #more info route
 @app.route('/more')
@@ -127,7 +130,9 @@ def test_drive():
         cursor.execute('select * from testdrive where name = % s;', (name,))
         elements = cursor.fetchall()
         return render_template('test_drive.html', elements=elements)
-    return render_template('test_drive.html')
+        cursor.execute('select * from testdrive;')
+        data = cursor.fetchall()
+    return render_template('test_drive.html', data=data)
 
 #test drive this car route
 @app.route('/test-drive/<car_id>')
