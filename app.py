@@ -130,8 +130,8 @@ def test_drive():
         cursor.execute('select * from testdrive where name = % s;', (name,))
         elements = cursor.fetchall()
         return render_template('test_drive.html', elements=elements)
-        cursor.execute('select * from testdrive;')
-        data = cursor.fetchall()
+    cursor.execute('select * from testdrive;')
+    data = cursor.fetchall()
     return render_template('test_drive.html', data=data)
 
 #test drive this car route
