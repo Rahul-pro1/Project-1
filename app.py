@@ -1,8 +1,6 @@
 #importing modules
 from flask import Flask, render_template, request, url_for, redirect, flash
 from flask_mysqldb import MySQL
-import requests
-from mapbox import Geocoder, StaticStyle, Maps
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 import csv
@@ -27,13 +25,14 @@ mysql = MySQL(app)
 #service notification
 def notify():
     date = datetime.today().strftime('%Y-%m-%d')
-    cursor = mysql.connection.cursor()
-    cursor.execute('select * from bought_cars')
-    data = cursor.fetchall()
-    for i in data:
-        if str(i[2]) == date:
+    f = open('static/bought_cars.csv', 'r', newline='')
+    csv_r = csv.reader(f)
+    for rec in csv_r:
+        if rec[0] == 'Car_ID':
+            continue
+        if rec[2] >= date:
             notif = Mail(from_email='rahulsiv2108@gmail.com',
-                         to_emails=i[3],
+                         to_emails=rec[3],
                          subject='Time to take your car to the service centre',
                          html_content= "<p>Hi! It's been 6 months since you have had your car checked. Ensure that you take your car to the nearest showroom for better performance! Happy driving!</p>"
                         )
@@ -43,22 +42,7 @@ def notify():
                 mail.send(notif)
             except Exception as e:
                 print(e)
-    # f = open('bought_cars.csv', 'r')
-    # csv_r = csv.reader(f)
-    # for rec in csv_r:
-    #     if rec[2] == date:
-    #         notif = Mail(from_email='rahulsiv2108@gmail.com',
-    #                      to_emails=rec[3],
-    #                      subject='Time to take your car to the service centre',
-    #                      html_content= "<p>Hi! It's been 6 months since you have had your car checked. Ensure that you take your car to the nearest showroom for better performance! Happy driving!</p>"
-    #                     )
-    #         sg_key = api['sendgrid']
-    #         try:
-    #             mail = SendGridAPIClient(sg_key)
-    #             mail.send(notif)
-    #         except Exception as e:
-    #             print(e)
-    # f.close()
+    f.close()
 
 #home route
 @app.route('/', methods = ['GET', 'POST'])
