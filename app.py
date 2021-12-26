@@ -145,8 +145,8 @@ def confirm(car_id):
         sg.send(td_update)
     except Exception as e:
         print(e)
-    return redirect(f'/test-drive/{car_id}')
     flash('Booking Confirmed!')
+    return redirect(f'/test-drive/{car_id}')
 
 #run the program
 if __name__ == '__main__':
