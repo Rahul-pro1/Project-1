@@ -1,5 +1,5 @@
 #importing modules
-from flask import Flask, render_template, request, url_for, redirect, flash
+from flask import Flask, render_template, request, url_for, redirect
 from flask_mysqldb import MySQL
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
@@ -130,8 +130,6 @@ def td_car(car_id):
 @app.route('/test-drive/<car_id>/book')
 def confirm(car_id):
     cursor = mysql.connection.cursor()
-    cursor.execute('update testdrive set Slot = Slot + 0000/00/01 where Car_ID = % s;', (car_id,))
-    mysql.connection.commit()
     cursor.execute('select seller_email from buyer where Car_ID = % s;', (car_id,))
     email = cursor.fetchone()
     td_update = Mail(from_email='rahulsiv2108@gmail.com',
@@ -145,7 +143,6 @@ def confirm(car_id):
         sg.send(td_update)
     except Exception as e:
         print(e)
-    flash('Booking Confirmed!')
     return redirect(f'/test-drive/{car_id}')
 
 #run the program
