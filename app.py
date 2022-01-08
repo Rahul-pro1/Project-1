@@ -145,11 +145,26 @@ def confirm(car_id):
         print(e)
     return redirect(f'/test-drive/{car_id}')
 
+#profile route
+@app.route('/profile/<userid>')
+def profile(userid):
+    cursor = mysql.connection.cursor()
+    cursor.execute('select * from accounts where id = % s;', (userid,))
+    user = cursor.fetchone()
+    return render_template('profile.html', user=user)
+
+#delete profile route
+@app.route('/profile/<userid>/delete')
+def profile_delete(userid):
+    cursor = mysql.connection.cursor()
+    cursor.execute('delete from accounts where id = % s;', (userid,))
+    mysql.connection.commit()
+    return redirect('/')
+
 #run the program
 if __name__ == '__main__':
     app.run(debug=True)
-    
-
+ 
 
 
 

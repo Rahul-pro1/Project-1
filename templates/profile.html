@@ -1,0 +1,12 @@
+{% extends 'common.html' %}
+{% block content %}
+<body>
+    <div class="container">
+        {% for i in user %}
+        <div>{{ i }}</div>
+        {% endfor %}
+        <a href="/profile/{{ user[0] }}/delete" class="btn btn-secondary">Delete</a>
+    </div>
+        
+</body>
+{% endblock content %}
