@@ -1,6 +1,39 @@
 {% extends 'common.html' %}
 {% block content %}
     <body>
+        <nav class="navbar navbar-expand-lg navbar-dark background-colour:black">
+            <a class="navbar-brand" href="#">ARA Showroom</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+        
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    {% if bool == True%}
+                    <a class="nav-link" href="/admin">Home</a>
+                    {% endif %}
+                    {% if bool == False%}
+                    <a class="nav-link" href="/">Home</a>
+                    {% endif %}
+                </li>
+                <li class="nav-item active">
+                    {% if bool == True%}
+                    <a class="nav-link" href="/searchcar">rental</a>
+                    {% endif %}
+                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Sign-up</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/buyers" class="nav-link">Available Cars</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/buyers/test-drive" class="nav-link">Test Drive</a>
+                </li>
+            </ul>
+            </div>
+        </nav>
         <div class="container">
             {% with messages = get_flashed_messages() %}
                 {% if messages %}
@@ -19,7 +52,7 @@
                 <img src="{{ i[8] }}" alt="Not loaded" srcset="">
                 <div>Car_ID: {{ i[0] }}</div>
                 <div>Available Slot: {{ i[2] }}</div>
-                <a href="/test-drive/{{ i[0] }}/book" class="btn btn-secondary" id="test">Book now!</a>
+                <a href="/buyers/test-drive/{{ i[0] }}/book" class="btn btn-secondary" id="test">Book now!</a>
             </div>
         {% endfor %}
     </body>

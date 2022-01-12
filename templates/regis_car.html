@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+      .btn {
+      border: 2px solid #20852d;
+      background-color: white;
+      width: 100%;
+      color: #1e743a;
+      font-size: 14px;
+      cursor: pointer;
+      }
+      #size2{
+        width: 50%;
+      }
+      /* Green */
+      .success {
+      border-color: #04AA6D;
+      color: green;
+      }
+      .success:hover {
+      background-color: #04AA6D;
+      color: white;
+      }
+    *{
+      margin: 0px;
+      padding: 0px;
+        }
+    body {
+      font-family:Arial, Helvetica, sans-serif;
+        }
+    .regform{
+      width: 1000px;
+      background-color: rgb(0,0,0,0.8);
+      margin: auto;
+      color: white;
+      padding: 3px 0px 3px 0px;
+      text-align: center;
+      border-radius: 10px 10px 0px 0px ;
+    }
+    .main{
+      background-color: rgb(0,0,0,0.6);
+      width: 1000px;
+      margin: auto;
+      color:white ;
+      border-radius: 0px 0px 10px 10px ;
+
+    }
+    form{
+      padding: 10px;
+    }
+    #label{
+      position: relative;
+      margin-left: 100px;
+      margin-top: 30px;
+      width: 125px;
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .box{
+      position:relative;
+      left:300px;
+      top: -38px;
+      line-height: 40px;
+      width: 532px;
+      border-radius: 6px;
+      padding: 0 10px;
+      font-size: 22px;
+      color: #555;
+    }
+    </style>
+    <title>Car Registration</title>
+  </head>
+  <body>
+    <container-fluid>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <!--<a class="navbar-brand" href="">hi</a>-->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item active">
+                {% if bool == True%}
+                <a class="nav-link" href="/admin">Home</a>
+                {% endif %}
+                {% if bool == False%}
+                <a class="nav-link" href="/">Home</a>
+                {% endif %}
+            </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Car Sell
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="/register_car">Register new car</a></li>
+                  <li><a class="dropdown-item" href="/registered_cars">Registered cars</a></li>
+                </ul>
+              </li>
+              {% if bool== True:%}
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Car Rental
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="/searchcar">searchcar</a></li>
+                </ul>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </container-fluid>
+  <br>
+  <br>
+  <h2 class="regform">Car Registration</h2>
+  <div class="main">
+  <form action="/register_car" name="form" method="POST" enctype="multipart/form-data">
+    <center>
+      <br>
+      <table style="width: 85%;" >
+        <th></th>
+        <tr><td>      
+          <div class="input-group mb-3">
+          <span class="input-group-text">Seller Name:</span>
+          <input type="text" name="SN" class="form-control" required>
+        </div>
+        </td></tr>  
+        <tr><td>      
+          <div class="input-group mb-3">
+          <span class="input-group-text">Car Model Name:</span>
+          <input type="text"  name="CMN" class="form-control" required>
+        </div>
+        </td></tr>
+        <tr><td>
+          <div class="input-group mb-3">
+            <span class="input-group-text">Seller Email:</span>
+            <input  type="email" name="email" class="form-control" required>
+          </div>
+        </td></tr>
+        <tr><td>
+          <div class="input-group mb-3">
+            <span class="input-group-text">test drive:</span>
+            <select name="TD" class="form-select" required>
+              <option value="">None</option>
+              <option value="yes">yes</option>
+              <option value="no">no</option> 
+            </select>
+          </div>
+        </td></tr>
+        <tr><td>
+          <div class="input-group mb-3">
+            <span class="input-group-text">Car Brand Name:</span>
+            <select name="CBN" class="form-select" required>
+              <option value="">None</option>
+              <option value="Tata">Tata</option>
+              <option value="Volkswagen">Volkswagen</option>
+              <option value="Nisson">Nisson</option>
+              <option value="Renaut">Renaut</option>
+              <option value="Ford">Ford</option>
+              <option value="Honda">Honda</option>
+            </select>
+          </div>
+        </td></tr>
+
+
+        <tr><td>
+        <div class="input-group mb-3">
+          <span class="input-group-text">Car Type:</span>
+          <select name="CT" class="form-select" required>
+            <option value="">None</option>
+            <option value="SUV">SUV</option>
+            <option value="Sedan">Sedan</option>
+            <option value="somethingelse">something else</option>
+            <option value="anotherthing">Another thing</option>
+          </select>
+        </div>
+
+        </td></tr>
+        <tr><td>
+          <div class="input-group mb-3">
+            <span class="input-group-text">Price</span>
+            <input type="text" name="PR" class="form-control" required>
+          </div>
+        </td></tr>
+        <tr><td>
+          <div class="mb-3">
+            <input type="file" name="file" class="form-control form-control-lg" required>
+          </div>
+        </td></tr>
+        <tr>
+          <td style="background-color: rgb(255, 255, 255);border-radius:5px 5px 5px 5px; height: 55px;">
+            <center>
+            <input type="submit" value="submit" style="width:99%;height: 45px;" class="btn btn-outline-secondary">
+            </center>
+          </td>
+          <td>
+          </td>
+        </tr>
+      </table>
+      <br>
+    </center>
+
+    
+  </form>
+</div>
+<br> <br>
+  
+  
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>

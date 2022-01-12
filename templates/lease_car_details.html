@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+      .btn {
+      border: 2px solid #20852d;
+      background-color: white;
+      width: 100%;
+      color: #1e743a;
+      font-size: 14px;
+      cursor: pointer;
+      }
+      #size2{
+        width: 50%;
+      }
+      /* Green */
+      .success {
+      border-color: #04AA6D;
+      color: green;
+      }
+      .success:hover {
+      background-color: #04AA6D;
+      color: white;
+      }
+      table {
+        border-collapse: collapse;
+        text-align: center;
+      }
+      table td {
+        border: 0.5px solid rgb(255, 255, 255); 
+      }
+      table tr:first-child td {
+        border-top: 0;
+      }
+      table tr td:first-child {
+        border-left: 0;
+      }
+      table tr:last-child td {
+        border-bottom: 0;
+      }
+      table tr td:last-child {
+        border-right: 0;
+      }
+    body {
+      font-family:Arial, Helvetica, sans-serif;
+        }
+      .regform{
+        width: 1000px;
+        background-color: rgb(0,0,0,0.8);
+        margin: auto;
+        color: white;
+        padding: 5px 0px 5px 0px;
+        text-align: center;
+        border-radius: 10px 10px 0px 0px ;
+        width: 95%;
+      }
+      .main{
+        background-color: rgb(0,0,0,0.6);
+        width: 1000px;
+        margin: auto;
+        color:white ;
+        border-radius: 0px 0px 10px 10px ;
+        width: 95%;
+      }
+      form{
+        padding: 10px;
+      }
+      
+    </style>
+        
+    <title>Hello</title>
+  </head>
+  
+  <body>
+    <container-fluid>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <!--<a class="navbar-brand" href="">hi</a>-->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Car Sell
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="/register_car">Register new car</a></li>
+                  <li><a class="dropdown-item" href="/registered_cars">Registered cars</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Car Rental
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="/searchcar">searchcar</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </container-fluid>
+<br>
+
+  <h1 class="regform">car details of # {{ car_number }}</h1>
+  <div class="main">
+
+      <table style="width: 100%;height: 95%;">
+        <tr>
+          <th style="width: 60%;">
+            <h3></h3>
+          </th>
+          <th >
+            <h3></h3>
+          </th>
+        </tr>
+        <tr>
+          <tr>
+            <td>
+              <p>
+              <div class="input-group mb-3">
+                <span class="input-group-text" style="width: 98%;">Car Model Name:</span>
+              </div>
+              </p>
+            </td>
+            <td>
+              {{ l[0][1] }}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>
+              <div class="input-group mb-3">
+                <span class="input-group-text"  style="width: 98%;">Car Brand Name:</span>
+              </div>
+              </p>
+            </td>
+            <td>
+              {{ l[0][2] }}
+            </td>
+          </tr>
+          <tr>
+
+          </tr>
+          <tr>
+            <td>
+              <p>
+              <div class="input-group mb-3">
+                <span class="input-group-text"  style="width: 98%;">test drive:</span>
+                
+              </div>
+            </p>
+            </td>
+            <td>
+              {{ l[0][4] }}
+            </td>
+          </tr>
+          <tr>
+            <td>
+            <p>
+              <div class="input-group mb-3">
+                <span class="input-group-text"  style="width: 98%;">Car Type:</span>
+               
+              </div>
+            </p>
+            </td>
+            <td>
+              {{ l[0][5] }}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>
+              <div class="input-group mb-3">
+                <span class="input-group-text"  style="width: 98%;">Price range:</span>
+                
+              </div>
+              </p>
+            </td>
+            <td >
+              <h6>{{ l[0][6] }}</h6>
+            </td>
+          </tr>
+      </table>
+      <button class="btn btn-success">
+        <a href="/lease_car">
+          lease
+        </a>
+      </button>
+
+  </div>
+  <br>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  
+  
+  </body>
+</html>

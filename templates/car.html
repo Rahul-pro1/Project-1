@@ -2,19 +2,47 @@
 {% block content %}
     {% for i in info %}
     <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">ARA Showroom</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+        
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    {% if bool == True%}
+                    <a class="nav-link" href="/admin">Home</a>
+                    {% endif %}
+                    {% if bool == False%}
+                    <a class="nav-link" href="/">Home</a>
+                    {% endif %}
+                </li>
+                <li class="nav-item active">
+                    {% if bool == True%}
+                    <a class="nav-link" href="/searchcar">rental</a>
+                    {% endif %}
+                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Sign-up</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/buyers" class="nav-link">Available Cars</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/buyers/test-drive" class="nav-link">Test Drive</a>
+                </li>
+            </ul>
+            </div>
+        </nav>
         <h1>{{ i[1] }}</h1>
         <div class="container">
             <img src="{{ i[5] }}" alt="">
-            <p><b>Name:</b> {{ i[1] }} </p>
-            <p><b>Quoted Price:</b> {{ i[3] }} </p>
-            <p><b>Year Of Purchase:</b> {{ i[4] }} </p>
+            <p><b>Name:</b> {{ i[3] }} {{ i[2] }}</p>
+            <p><b>Quoted Price:</b> {{ i[7] }} </p>
             <p><b>Distance Run:</b>50000 km</p>
-            <a href="/test-drive/{{ i[0] }}" class="btn btn-primary" id= 'test'>Test Drive Now!</a>
-            <a href="/mail" class="btn btn-secondary">Contact Seller</a>
-            <ul>
-                <h5>Specs</h5>
-                    <li>{{ specs }}</li> 
-            </ul>
+            <a href="/buyers/test-drive/{{ i[0] }}" class="btn btn-primary" id= 'test'>Test Drive Now!</a>
+            <a href="/buyers/{{ i[0] }}/mail" class="btn btn-secondary">Contact Seller</a>
         </div>
     </body>
     {% endfor %}

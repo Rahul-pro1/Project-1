@@ -1,6 +1,39 @@
 {% extends 'common.html' %}
 {% block content %}
     <body id='buyer'>
+        <nav class="navbar navbar-expand-lg navbar-dark background-colour:black">
+            <a class="navbar-brand" href="#">ARA Showroom</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+        
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    {% if bool == True%}
+                    <a class="nav-link" href="/admin">Home</a>
+                    {% endif %}
+                    {% if bool == False%}
+                    <a class="nav-link" href="/">Home</a>
+                    {% endif %}
+                </li>
+                <li class="nav-item active">
+                    {% if bool == True%}
+                    <a class="nav-link" href="/searchcar">rental</a>
+                    {% endif %}
+                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Sign-up</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/buyers" class="nav-link">Available Cars</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/buyers/test-drive" class="nav-link">Test Drive</a>
+                </li>
+            </ul>
+            </div>
+        </nav>
         <h1>Test Drive Now!</h1>
         <hr>
         <form action="", method="POST">
@@ -11,8 +44,8 @@
         {% for i in elements %}
         <div class="card">
             <div class="card-body">
-                <h2><span>{{ i[0] }}. </span>{{ i[1] }}</h2>
-                <a href="/test-drive/{{ i[0] }}" class='btn btn-primary'>Test drive now!</a>
+                <h2><span>{{ i[0] }} </span>{{ i[1] }}</h2>
+                <a href="/buyers/test-drive/{{ i[0] }}" class='btn btn-primary'>Test drive now!</a>
             </div>
         </div>
     {% endfor %}

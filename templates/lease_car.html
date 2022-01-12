@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+      .btn {
+      border: 2px solid #20852d;
+      background-color: white;
+      width: 100%;
+      color: #1e743a;
+      font-size: 14px;
+      cursor: pointer;
+      }
+      #size2{
+        width: 50%;
+      }
+      /* Green */
+      .success {
+      border-color: #04AA6D;
+      color: green;
+      }
+      .success:hover {
+      background-color: #04AA6D;
+      color: white;
+      }
+    *{
+      margin: 0px;
+      padding: 0px;
+        }
+    body {
+      font-family:Arial, Helvetica, sans-serif;
+      background-image: url('example_img_girl.jpg');
+      background-repeat: no-repeat;
+        }
+    .regform{
+      width: 1000px;
+      background-color: rgb(0,0,0,0.8);
+      margin: auto;
+      color: white;
+      padding: 3px 0px 3px 0px;
+      text-align: center;
+      border-radius: 10px 10px 0px 0px ;
+    }
+    .main{
+      background-color: rgb(0,0,0,0.6);
+      width: 1000px;
+      margin: auto;
+      color:white ;
+      border-radius: 0px 0px 10px 10px ;
+
+    }
+    form{
+      padding: 10px;
+    }
+    #label{
+      position: relative;
+      margin-left: 100px;
+      margin-top: 30px;
+      width: 125px;
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .box{
+      position:relative;
+      left:300px;
+      top: -38px;
+      line-height: 40px;
+      width: 532px;
+      border-radius: 6px;
+      padding: 0 10px;
+      font-size: 22px;
+      color: #555;
+    }
+    </style>
+    <title>Car Registration</title>
+  </head>
+  <body>
+    <container-fluid>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <!--<a class="navbar-brand" href="">hi</a>-->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Car Sell
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="/register_car">Register new car</a></li>
+                  <li><a class="dropdown-item" href="/registered_cars">Registered cars</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Car Rental
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="/searchcar">searchcar</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </container-fluid>
+  <br>
+  <br>
+  <h2 class="regform">Car leasing</h2>
+  <div class="main">
+  <form action="/lease_car" name="form" method="POST" >
+    <center>
+      <br>
+      <table style="width: 85%;" >
+        <th></th>
+        <tr><td>      
+            <div class="input-group mb-3">
+            <span class="input-group-text">Car tag</span>
+            <input type="text"  name="CN" class="form-control" required>
+            </div>
+        </td></tr>
+        <tr><td>      
+        <tr><td>
+          <div class="input-group mb-3">
+            <span class="input-group-text">name:</span>
+            <input  type="text" name="N" class="form-control" required>
+          </div>
+        </td></tr>
+        <tr><td>
+          <div class="input-group mb-3">
+            <span class="input-group-text">Email:</span>
+            <input  type="email" name="email" class="form-control" required>
+          </div>
+        </td></tr>
+        <tr><td>
+          <div class="input-group mb-3">
+            <span class="input-group-text">test drive:</span>
+            <select name="TD" class="form-select" required>
+              <option value="">None</option>
+              <option value="yes">yes</option>
+              <option value="no">no</option> 
+            </select>
+          </div>
+        </td></tr>
+        <tr><td>
+        <div class="input-group mb-3">
+          <span class="input-group-text">lease renewal period:</span>
+          <select name="lRP" class="form-select" required>
+            <option value="">None</option>
+            <option value="monthly">monthly</option>
+            <option value="half yearly">half yearly</option>
+            <option value="yearly">yearly</option>
+          </select>
+        </div>
+        </td></tr>
+        <tr><td>
+          <div class="input-group mb-3">
+            <span class="input-group-text">Avalablity</span>
+            <select name="status" class="form-select" required>
+              <option value="">None</option>
+              <option value="yes">yes</option>
+              <option value="no">no</option>
+            </select>
+          </div>
+          </td></tr>
+        <tr>
+            <td>
+            <center>
+            <input type="submit" value="submit" style="width: 100%;height: 45px;" class="btn btn-outline-secondary">
+            
+            </center>
+          </td>
+          <td>
+          </td>
+        </tr>
+      </table>
+      <br>
+    </center>
+
+    
+  </form>
+</div>
+<br> <br>
+  
+  
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
