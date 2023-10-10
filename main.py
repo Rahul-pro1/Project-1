@@ -153,7 +153,7 @@ def notify():
                          subject='Time to take your car to the service centre',
                          html_content= "<p>Hi! It's been 6 months since you have had your car checked. Ensure that you take your car to the nearest showroom for better performance! Happy driving!</p>"
                         )
-            sg_key = "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"
+            sg_key = "#" #supposed to have the sendgrid api key
             try:
                 mail = SendGridAPIClient(sg_key)
                 mail.send(notif)
@@ -206,7 +206,7 @@ def send(car_id):
         to_emails=email,
         subject='Seller contact info',
         html_content=f'<div>Seller contact info has been sent!</div><p>{data}</p>')
-    sg_key = "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"
+    sg_key = "#" #supposed to contain the sendgrid api key
     try:
         sg = SendGridAPIClient(sg_key)
         res = sg.send(msg)
